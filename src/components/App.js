@@ -1,6 +1,4 @@
 import React from 'react';
-import Title from'../title/Title';
-import Subtitle from'../subtitle/Subtitle';
 import { Grid } from '@mui/material';
 
 import './styles.scss';
@@ -10,10 +8,8 @@ export default function App() {
     <div className="App">
       <Grid container spacing={2}>
         <Grid xs={12} align="center">
-          <Title> Simulación - Ejercicio 247 </Title>
         </Grid>
         <Grid xs={12}>
-          <Subtitle> Enunciado </Subtitle>
         </Grid>
         <Grid>
           <p>

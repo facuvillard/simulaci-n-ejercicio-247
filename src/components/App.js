@@ -16,7 +16,7 @@ import {
 import './styles.scss';
 
 export default function App() {
-	Decimal.set({ precision: 20 });
+	Decimal.set({ precision: 8 });
 	const [params, setParams] = useState({
 		t: 0,
 		V: 10,
@@ -44,14 +44,14 @@ export default function App() {
 		let nextT = calculateNextT(params.h, t);
 		let iteration = {
 			index: index,
-			t: t,
-			c: c,
-			K1: k1,
-			K2: k2,
-			K3: k3,
-			K4: k4,
-			nextC: nextC,
-			nextT: nextT,
+			t: t.toString(),
+			c: c.toString(),
+			K1: k1.toString(),
+			K2: k2.toString(),
+			K3: k3.toString(),
+			K4: k4.toString(),
+			nextC: nextC.toString(),
+			nextT: nextT.toString(),
 		};
     arrayIterations.push(iteration)
     console.log(iteration)
@@ -67,14 +67,14 @@ export default function App() {
 			nextT = calculateNextT(params.h, t);
       iteration = {
         index: index,
-        t: t,
-        c: c,
-        K1: k1,
-        K2: k2,
-        K3: k3,
-        K4: k4,
-        nextC: nextC,
-        nextT: nextT,
+		t: t.toString(),
+		c: c.toString(),
+		K1: k1.toString(),
+		K2: k2.toString(),
+		K3: k3.toString(),
+		K4: k4.toString(),
+		nextC: nextC.toString(),
+		nextT: nextT.toString(),
       };
       arrayIterations.push(iteration)
       console.log(iteration)
@@ -103,8 +103,14 @@ export default function App() {
 			<div className="separator" />
 			<Form params={params} setParams={setParams} startIteration={startIteration} />
 			<div className="separator" />
+			<Typography type="number" variant="h4">
+				Tabla de Iteraciones
+			</Typography>
 			<Table iterations={iterations} />
 			<div className="separator" />
+			<Typography type="number" variant="h4">
+				Gráfico de concentración en función del tiempo			
+			</Typography>
 			<Chart iterations={iterations} />
 		</div>
 	);

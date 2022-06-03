@@ -18,9 +18,9 @@ export default function Form({ params, setParams, startIteration }) {
 				<TextField
 					type="number"
 					fullWidth
-					id="V"
+					id="F"
 					label="Flujo másico (F)"
-					value={params.V}
+					value={params.F}
 					onChange={handleOnChange}
 				/>
 			</Grid>
@@ -28,9 +28,9 @@ export default function Form({ params, setParams, startIteration }) {
 				<TextField
 					type="number"
 					fullWidth
-					id="F"
+					id="V"
 					label="Volumen (V)"
-					value={params.F}
+					value={params.V}
 					onChange={handleOnChange}
 				/>
 			</Grid>

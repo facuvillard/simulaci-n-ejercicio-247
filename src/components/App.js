@@ -11,12 +11,13 @@ import {
 	calculateK4,
 	calculateNextConcentration,
 	calculateNextT,
+	equals
 } from '../utils/calculations';
 
 import './styles.scss';
 
 export default function App() {
-	Decimal.set({ precision: 8 });
+	Decimal.set({ precision: 10 });
 	const [params, setParams] = useState({
 		t: 0,
 		V: 10,
@@ -45,7 +46,7 @@ export default function App() {
 		let iteration = {
 			index: index,
 			t: t.toString(),
-			c: c.toString(),
+			c: c,
 			K1: k1.toString(),
 			K2: k2.toString(),
 			K3: k3.toString(),
@@ -55,7 +56,7 @@ export default function App() {
 		};
     arrayIterations.push(iteration)
     console.log(iteration)
-		for (let i = 0; i < 100; i++) {
+		while(!equals(c, nextC)) {
 			index++;
 			t = nextT;
 			c = nextC;
@@ -67,8 +68,8 @@ export default function App() {
 			nextT = calculateNextT(params.h, t);
       iteration = {
         index: index,
-		t: t.toString(),
-		c: c.toString(),
+		t: t.toNumber(),
+		c: c.toNumber(),
 		K1: k1.toString(),
 		K2: k2.toString(),
 		K3: k3.toString(),
@@ -111,6 +112,7 @@ export default function App() {
 			<Typography type="number" variant="h4">
 				Gráfico de concentración en función del tiempo			
 			</Typography>
+			<div className="separator" />
 			<Chart iterations={iterations} />
 		</div>
 	);

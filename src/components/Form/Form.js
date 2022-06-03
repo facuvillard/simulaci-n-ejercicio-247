@@ -4,7 +4,7 @@ import { TextField, Grid, Typography, Button } from '@mui/material';
 export default function Form({ params, setParams, startIteration }) {
 	const handleOnChange = (e) => {
 		const { id, value } = e.target;
-		setParams({ ...params, [id]: parseFloat(value) });
+		setParams({ ...params, [id]: value });
 	};
 
 	return (

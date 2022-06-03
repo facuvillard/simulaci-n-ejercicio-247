@@ -3,7 +3,7 @@ import { Grid, Typography } from '@mui/material';
 import Form from './Form/Form';
 import Table from './Table/Table';
 import Chart from './/Chart/Chart';
-
+import { Decimal } from "decimal.js";
 import {
 	calculateK1,
 	calculateK2,
@@ -16,6 +16,7 @@ import {
 import './styles.scss';
 
 export default function App() {
+	Decimal.set({ precision: 20 });
 	const [params, setParams] = useState({
 		t: 0,
 		V: 10,
@@ -29,6 +30,7 @@ export default function App() {
 	const [iterations, setIterations] = useState([]);
 
 	const startIteration = async () => {
+		console.log(params)
     await setIterations([])
     const arrayIterations = []
 		let index = 0;
@@ -53,7 +55,7 @@ export default function App() {
 		};
     arrayIterations.push(iteration)
     console.log(iteration)
-		for (let i = 0; i < 2000; i++) {
+		for (let i = 0; i < 100; i++) {
 			index++;
 			t = nextT;
 			c = nextC;

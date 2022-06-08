@@ -1,5 +1,4 @@
 const { Decimal } = require('decimal.js');
-Decimal.set({ precision: 10 });
 
 const calculateK1 = (c, k, Q, F, V) => {
 	const term1 = Decimal.mul(k, Decimal.pow(c, 2));

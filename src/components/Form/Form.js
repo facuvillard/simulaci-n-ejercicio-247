@@ -54,7 +54,7 @@ export default function Form({ params, setParams, startIteration }) {
 					onChange={handleOnChange}
 				/>
 			</Grid>
-			<Grid item xs={6}>
+			<Grid item xs={4}>
 				<TextField
 					type="number"
 					fullWidth
@@ -64,13 +64,23 @@ export default function Form({ params, setParams, startIteration }) {
 					onChange={handleOnChange}
 				/>
 			</Grid>
-			<Grid item xs={6}>
+			<Grid item xs={4}>
 				<TextField
 					type="number"
 					fullWidth
 					id="h"
 					label="Paso por iteración (h)"
 					value={params.h}
+					onChange={handleOnChange}
+				/>
+			</Grid>
+			<Grid item xs={4}>
+				<TextField
+					type="number"
+					fullWidth
+					id="precision"
+					label="Precisión"
+					value={params.precision}
 					onChange={handleOnChange}
 				/>
 			</Grid>

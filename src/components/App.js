@@ -17,7 +17,6 @@ import {
 import './styles.scss';
 
 export default function App() {
-	Decimal.set({ precision: 10 });
 	const [params, setParams] = useState({
 		t: 0,
 		V: 10,
@@ -26,7 +25,11 @@ export default function App() {
 		k: 0.1,
 		cInicial: 0,
 		h: 0.5,
+		precision: 20,
 	});
+
+	Decimal.set({ precision: 6 });
+
 
 	const [iterations, setIterations] = useState([]);
 

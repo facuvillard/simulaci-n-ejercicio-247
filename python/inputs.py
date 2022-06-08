@@ -1,12 +1,17 @@
 def getF():
-    return float(input("Flujo másico F: "))
-
+    return input("Flujo másico F: ")
 
 def getV():
-    return float(input("Vólumen V: "))
+    return input("Vólumen V: ")
 
 def getQ():
-    return float(input("Flujo Volumétrico Q: "))
+    return input("Flujo Volumétrico Q: ")
 
-def getV():
-    return float(input("Vólumen: "))
+def getPrecision():
+    return int(input("Precisión de caracteres significativos: "))
+
+def getK():
+    return input("Constante k: ")
+
+def getH():
+    return input("Incremento de tiempo h: ")

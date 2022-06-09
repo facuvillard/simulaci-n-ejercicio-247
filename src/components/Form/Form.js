@@ -79,7 +79,7 @@ export default function Form({ params, setParams, startIteration }) {
 					type="number"
 					fullWidth
 					id="precision"
-					label="Precisión"
+					label="Precisión (Caractéres significativos)"
 					value={params.precision}
 					onChange={handleOnChange}
 				/>

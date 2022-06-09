@@ -3,7 +3,7 @@ import { Grid, Typography } from '@mui/material';
 import Form from './Form/Form';
 import Table from './Table/Table';
 import Chart from './/Chart/Chart';
-import { Decimal } from "decimal.js";
+import { Decimal } from 'decimal.js';
 import {
 	calculateK1,
 	calculateK2,
@@ -11,7 +11,7 @@ import {
 	calculateK4,
 	calculateNextConcentration,
 	calculateNextT,
-	equals
+	equals,
 } from '../utils/calculations';
 
 import './styles.scss';
@@ -28,15 +28,12 @@ export default function App() {
 		precision: 20,
 	});
 
-	Decimal.set({ precision: 6 });
-
-
 	const [iterations, setIterations] = useState([]);
 
 	const startIteration = async () => {
-		console.log(params)
-    await setIterations([])
-    const arrayIterations = []
+		Decimal.set({ precision: parseInt(params.precision)});
+		await setIterations([]);
+		const arrayIterations = [];
 		let index = 0;
 		let t = params.t;
 		let c = params.cInicial;
@@ -57,9 +54,8 @@ export default function App() {
 			nextC: nextC.toString(),
 			nextT: nextT.toString(),
 		};
-    arrayIterations.push(iteration)
-    console.log(iteration)
-		while(!equals(c, nextC)) {
+		arrayIterations.push(iteration);
+		while (!equals(c, nextC)) {
 			index++;
 			t = nextT;
 			c = nextC;
@@ -69,21 +65,20 @@ export default function App() {
 			k4 = calculateK4(c, params.k, params.Q, params.F, params.V, params.h, k3);
 			nextC = calculateNextConcentration(c, params.h, k1, k2, k3, k4);
 			nextT = calculateNextT(params.h, t);
-      iteration = {
-        index: index,
-		t: t.toNumber(),
-		c: c.toNumber(),
-		K1: k1.toString(),
-		K2: k2.toString(),
-		K3: k3.toString(),
-		K4: k4.toString(),
-		nextC: nextC.toString(),
-		nextT: nextT.toString(),
-      };
-      arrayIterations.push(iteration)
-      console.log(iteration)
+			iteration = {
+				index: index,
+				t: t.toNumber(),
+				c: c.toNumber(),
+				K1: k1.toString(),
+				K2: k2.toString(),
+				K3: k3.toString(),
+				K4: k4.toString(),
+				nextC: nextC.toString(),
+				nextT: nextT.toString(),
+			};
+			arrayIterations.push(iteration);
 		}
-    await setIterations(arrayIterations);
+		await setIterations(arrayIterations);
 	};
 
 	return (
@@ -113,7 +108,7 @@ export default function App() {
 			<Table iterations={iterations} />
 			<div className="separator" />
 			<Typography type="number" variant="h4">
-				Gráfico de concentración en función del tiempo			
+				Gráfico de concentración en función del tiempo
 			</Typography>
 			<div className="separator" />
 			<Chart iterations={iterations} />

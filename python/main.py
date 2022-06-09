@@ -31,23 +31,25 @@ def iterate():
     K4 = calc.calculateK4(c, k, Q, F, V, h, K3)
     nextC = calc.calculateNextC(c, h, K1, K2, K3, K4)
     nextT = calc.calculateNextT(h, t)
-
+    iterations.append([t, c, K1, K2, K3, K4, nextC, nextT])
     while c != nextC:
-        iterations.append([t, c, K1, K2, K3, K4, nextC, nextT])
         arrayOfCValues.append(c)
         arrayOfTValues.append(t)
-        c = nextC
         t = nextT
+        c = nextC
         K1 = calc.calculateK1(c, k, Q, F, V)
         K2 = calc.calculateK2(c, k, Q, F, V, h, K1)
         K3 = calc.calculateK3(c, k, Q, F, V, h, K2)
         K4 = calc.calculateK4(c, k, Q, F, V, h, K3)
         nextC = calc.calculateNextC(c, h, K1, K2, K3, K4)
         nextT = calc.calculateNextT(h, t)
+        iterations.append([t, c, K1, K2, K3, K4, nextC, nextT])
+    
     result = dict()
     result['iterations'] = iterations
     result['arrayOfTValues'] = arrayOfTValues
     result['arrayOfCValues'] = arrayOfCValues
     return result
+
 
 main()

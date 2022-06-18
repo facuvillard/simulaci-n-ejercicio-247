@@ -31,7 +31,7 @@ export default function App() {
 	const [iterations, setIterations] = useState([]);
 
 	const startIteration = async () => {
-		Decimal.set({ precision: parseInt(params.precision)});
+		Decimal.set({ precision: parseInt(params.precision) });
 		await setIterations([]);
 		const arrayIterations = [];
 		let index = 0;
@@ -78,6 +78,27 @@ export default function App() {
 			};
 			arrayIterations.push(iteration);
 		}
+		index++;
+		t = nextT;
+		c = nextC;
+		k1 = calculateK1(c, params.k, params.Q, params.F, params.V);
+		k2 = calculateK2(c, params.k, params.Q, params.F, params.V, params.h, k1);
+		k3 = calculateK3(c, params.k, params.Q, params.F, params.V, params.h, k2);
+		k4 = calculateK4(c, params.k, params.Q, params.F, params.V, params.h, k3);
+		nextC = calculateNextConcentration(c, params.h, k1, k2, k3, k4);
+		nextT = calculateNextT(params.h, t);
+		iteration = {
+			index: index,
+			t: t.toNumber(),
+			c: c.toNumber(),
+			K1: k1.toString(),
+			K2: k2.toString(),
+			K3: k3.toString(),
+			K4: k4.toString(),
+			nextC: nextC.toString(),
+			nextT: nextT.toString(),
+		};
+		arrayIterations.push(iteration);
 		await setIterations(arrayIterations);
 	};
 
